@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        Name<input type="text" name="name" ><br><br>
+        Password<input type="password" ><br><br>
+        Age<input type="number" value="age"/><br><br>
+            Gender :
+            <input type="radio" name="gender" id="gender1" value="Male">male
+            <input type="radio" name="gender" id="gender2" value="Female">female<br><br>
+        Courses :
+        <select name="courses" id="courses">
+            <option value="">---Select---</option>
+            <option value="Math">History</option>
+            <option value="Science">Science</option>
+            <option value="History">Chemistry</option>
+        </select><br><br>
+        Hobbies :
+        <input type="checkbox" name="reading" id="reading" value="Reading">Reading
+        <input type="checkbox" name="painting" id="painting" value="Painting">Painting
+        <input type="checkbox" name="Playing" id="playing" value="Playing">Playing
+        <br><br>
+        Phone number:
+        <input type="tel" name="number" id="phonenumber" required><br><br>
+
+        Dateofbirth <input type="date" id="dob" name="dob" required > <br><br>
+
+        <input type="submit" value="register" >
+        
+    </form>
+    <script>
+        function register() {
+        
+          const name = document.getElementById("name").value;
+          const password = document.getElementById("password").value;
+          const age = parseInt(document.getElementById("age").value);
+          const gender = document.querySelector('input[name="gender"]:checked');
+          const courseName = document.getElementById("courseName").value;
+          const hobbies = document.querySelectorAll('input[name="hobby"]:checked');
+          const phoneNumber = document.getElementById("phoneNumber").value;
+          const dob = new Date(document.getElementById("dob").value);
+    
+          if (name.length < 5 || name.length > 15) {
+            alert("Name must be between 5 and 15 characters.");
+            return false;
+          }
+    
+          const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,15}$/;
+          if (!password.match(passwordPattern)) {
+            alert("Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be between 5 and 15 characters.");
+            return false;
+          }
+    
+          if (age < 20 || age > 80) {
+            alert("Age must be between 20 and 80.");
+            return false;
+          }
+    
+          if (!gender) {
+            alert("Please select a gender.");
+            return false;
+          }
+    
+          if (courseName === "---select---") {
+            alert("Please select a course.");
+            return false;
+          }
+    
+          if (phoneNumber.length !== 10 || isNaN(phoneNumber)) {
+            alert("Phone number must be a 10-digit number.");
+            return false;
+          }
+    
+          const currentYear = new Date().getFullYear();
+          if (dob.getFullYear() > currentYear - 20) {
+            alert("Date of birth cannot be below 1998.");
+            return false;
+          }
+    
+         
+          alert("Registered successfully!");
+          return true;
+        }
+      </script>
+</body>
+</html>

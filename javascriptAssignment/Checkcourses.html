@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script>
+        var courses=["english","sanskrit","maths"];
+var username=prompt("enter username:");
+var courseName=prompt("choose a course:"+courses.join(","));
+for (const course of courses) {
+    document.write(`welcome ${username}`);
+    if(courseName === course){
+        document.write(`you have selected ${course}`);
+        document.write("course fee is 20000");
+        break;
+    }else{
+        document.write("selected course is not available");
+        break;
+    }
+    
+}
+function greet(){
+    var username=prompt("enter username");
+    alert(`welcome ${username}`);
+}
+greet();
+function printMessage(msg){
+    var username=prompt("enter username");
+    alert(`${msg} ${username}`);
+}
+printMessage("have a great day");
+function printMessageFromTextarea(){
+    var comment =document.getElementById("comments"),value;
+    var divElement=document.getElementById("mydiv");
+    divElement.innerHTML=comment;
+}
+function showDetails(){
+    var course=document.getElementById("courseName").value;
+    var divElement=document.getElementById("courseDerails");
+    divElement.innerHTML=`selected course: ${course}`;
+}
+    </script>
+    <textarea id="comments" onkeyup="printMessageFromTextarea()"></textarea>
+<div id="mydiv" style="background-color:pink"></div>
+<select id="courseName" onchange="showDetails()">
+    <option value="maths">maths</option>
+    <option value="english">english</option>
+    <option value="science">science</option>
+    <option value="biology">biology</option>
+
+</select>
+<div id=""courseDetails></div>
+
+</body>
+</html>
